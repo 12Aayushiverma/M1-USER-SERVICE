@@ -1,6 +1,7 @@
 package com.example.UserService.services;
 
 import com.example.UserService.controller.UserController;
+import com.example.UserService.entities.Ratings;
 import com.example.UserService.entities.User;
 import com.example.UserService.repositories.UserRepository;
 import org.slf4j.Logger;
@@ -35,10 +36,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> getUser(Integer userId) {
+        User use = new User();
         Optional<User> user = userRepository.findById(userId);
-        ArrayList<Ratings> forObject = restTemplate.getForObject("http://localhost:8087/rating/users/5", ArrayList.class);
-       log.info("{} ",forObject);
-       user.se
+        ArrayList<Ratings> ratingOfUser = restTemplate.getForObject("http://localhost:8087/rating/users/5", ArrayList.class);
+       log.info("{} ",ratingOfUser);
+       use.setRatings(ratingOfUser);
         return user;
     }
 

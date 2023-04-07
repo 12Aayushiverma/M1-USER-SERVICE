@@ -34,6 +34,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.2</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -66,6 +73,24 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Optional URL to server. Default value is http://localhost:9000 -->
+				<sonar.host.url>
+					http://localhost:9000
+				</sonar.host.url>
+				<sonar.login>admin</sonar.login>
+				<sonar.password>Aayushi12@#</sonar.password>
+         <!---<sonar.analysis.mode>incremental</sonar.analysis.mode>-->
+         <sonar.issuesReport.html.enable>true</sonar.issuesReport.html.enable>
+			</properties>
+		</profile>
+	</profiles>
 	<repositories>
 		<repository>
 			<id>netflix-candidates</id>

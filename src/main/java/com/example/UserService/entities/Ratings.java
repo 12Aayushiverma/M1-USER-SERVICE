@@ -1,9 +1,9 @@
-package com.example.UserService.services;
+package com.example.UserService.entities;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Entity
-@Table(name = "userRating")
 public class Ratings {
 
     @Id
@@ -17,6 +17,16 @@ public class Ratings {
     private int rating;
 
     private String feedback;
+
+    private Hotel hotel;
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
 
     public Integer getRatingId() {
         return ratingId;
@@ -69,5 +79,4 @@ public class Ratings {
     public Ratings() {
 
     }
-
 }
