@@ -79,4 +79,16 @@ public class Ratings {
     public Ratings() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Ratings{" +
+                "ratingId=" + ratingId +
+                ", userId=" + userId +
+                ", hotelId=" + hotelId +
+                ", rating=" + rating +
+                ", feedback='" + feedback + '\'' +
+                ", hotel=" + hotel +
+                '}';
+    }
 }

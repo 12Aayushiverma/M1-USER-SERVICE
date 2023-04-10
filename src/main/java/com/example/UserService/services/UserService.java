@@ -1,20 +1,20 @@
 package com.example.UserService.services;
 
 import com.example.UserService.entities.User;
+import com.example.UserService.model.response.CommonResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService<T> {
 
 
 
-    User saveUser(User user);
+    CommonResponse saveUser(User user);
 
     List<User> getAllUsers();
 
-    Optional<User> getUser(Integer userId);
+    CommonResponse getUser(Integer userId);
 
-    public T updateUser(User user);
+    CommonResponse updateUser(User user);
 
 }

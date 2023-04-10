@@ -1,11 +1,13 @@
 package com.example.UserService.entities;
 
+import com.example.UserService.model.response.CommonResponse;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "userDtls")
-public class User {
+public class User extends CommonResponse {
 
 
     @GeneratedValue(strategy = GenerationType.AUTO)
