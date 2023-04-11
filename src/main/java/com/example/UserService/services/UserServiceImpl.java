@@ -37,7 +37,7 @@ public class UserServiceImpl<T> implements UserService {
             userRepository.save(user);
             cmn.setMessage("User Sved Successfully");
             cmn.setStatusCode(200);
-            log.info("UserServiceImpl::saveUser()::save()");
+            log.info("UserServiceImpl::saveUser()::end");
             return cmn;
         }
         catch (Exception e) {

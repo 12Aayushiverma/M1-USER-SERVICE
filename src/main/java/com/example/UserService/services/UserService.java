@@ -17,4 +17,5 @@ public interface UserService<T> {
 
     CommonResponse updateUser(User user);
 
+
 }

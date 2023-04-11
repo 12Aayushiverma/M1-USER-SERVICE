@@ -1,8 +1,6 @@
 package com.example.UserService.controller;
 
-import com.example.UserService.entities.Ratings;
 import com.example.UserService.entities.User;
-import com.example.UserService.exception.ResourseNotFoundException;
 import com.example.UserService.model.HelperClass;
 import com.example.UserService.model.response.CommonResponse;
 import com.example.UserService.services.UserService;
@@ -16,13 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/user")
-public class UserController<T> {
+public class UserController {
 
 
     @Autowired
@@ -39,7 +35,7 @@ public class UserController<T> {
         try {
 
             log.info("UserController::createUser::getUsers() ");
-            cmn = (CommonResponse) userService.saveUser(user);
+            cmn =  userService.saveUser(user);
 
             log.info("UserController::createUser===END ");
             return ResponseEntity.status(HttpStatus.OK).body(cmn);
@@ -57,28 +53,28 @@ public class UserController<T> {
 
     @GetMapping("/{userId}")
     @CircuitBreaker(name = "ratingHotelBreaker", fallbackMethod = "ratingHotelFallback")
-    public ResponseEntity<T> getUser(@PathVariable Integer userId) {
+    public ResponseEntity getUser(@PathVariable Integer userId) {
         log.info("UserController::getUser===START ");
         CommonResponse cmn = new CommonResponse();
         try {
 
             log.info("UserController::getUser::getUser() ");
-            cmn = (CommonResponse) userService.getUser(userId);
+            cmn = userService.getUser(userId);
 
             log.info("UserController::getUser===END ");
-            return ResponseEntity.status(HttpStatus.OK).body((T) cmn);
+            return ResponseEntity.status(HttpStatus.OK).body(cmn);
         } catch (Exception e) {
 
             log.error("UserController::getUser===EXCEPTION= {} ", e.getStackTrace());
             cmn = HelperClass.getCommonExceptionResoponse();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body((T) cmn);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body( cmn);
         }
 
     }
 
 
    public ResponseEntity<User> ratingHotelFallback(Integer userId, Exception ex){
-        log.info("fallback is executed because service is down : ", ex.getMessage());
+        log.info("fallback is executed because service is down = {}  ", ex.getMessage());
 
         User user = new User();
         user.setId(112);
@@ -111,14 +107,5 @@ public class UserController<T> {
 
     }
 
-    public static void main(String[] args) {
-
-        List<Ratings> list = Arrays.asList(new Ratings(15,4,5,8,"Nice envirnoment"));
-       CommonResponse cmn = new CommonResponse();
-         cmn.setData(list);
-//      List<Ratings> list2 = (List<Ratings>) cmn.getData();
-//      System.out.println(list2);
-
-       List<Ratings> rr = (List<Ratings>) cmn.getData().toString();
-    }
+ 
 }

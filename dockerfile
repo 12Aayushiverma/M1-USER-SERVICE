@@ -1,4 +1,4 @@
 FROM openjdk:11
-EXPOSE 8080
-COPY  target/docker-demo-0.0.1-SNAPSHOT.jar docker-demo-0.0.1-SNAPSHOT.jar
-CMD java -jar docker-demo-0.0.1-SNAPSHOT.jar
+EXPOSE 8085
+COPY  target/User-Service-0.0.1-SNAPSHOT.jar User-Service-0.0.1-SNAPSHOT.jar
+CMD java -jar User-Service-0.0.1-SNAPSHOT.jar
